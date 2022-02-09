@@ -3,21 +3,30 @@ This work was part of a larger framework for open source arrhythmia detection, i
 identification is marked as REDACTED.
 After installation (see sections below):
 
-1. Reproduction of the experiments: the configuration files are in the configs/ folder. Make sure that you are inside
+1. Installation:
+   1. Create a virtualenv (e.g. `virtualenv --python=/usr/bin/python3.8 .venv`) and activate it (e.g. `source .venv/bin/activate`)
+   2. Install dependencies (`make setup`).
+
+2. Reproduction of the experiments: the configuration files are in the configs/ folder. Make sure that you are inside
 the virtual environment. First: preprocess the data using a training config from either the MITBIH or Wafer dataset to
    download and preprocess the data (e.g. `ecgan-preprocess configs/train/mitbih_beatgan.yml`).
+   Note: you need to setup the Kaggle CLI for automatic download of the MITBIH dataset. If you do not have
+   access to this, download the data from https://www.kaggle.com/shayanfazeli/heartbeat. The downloaded data needs to
+   be extracted into `data/mitbih_beats/raw` which should encompass four files after extraction.
    Afterwards you can start training (e.g. `ecgan-train configs/train/mitbih_beatgan.yml`) or anomaly detection.
-   Note: All tracking was performed using weights and biases. Since we offer the original configuration files here, the
+   The trained models are stored at Weights and Biases. Starting an anomaly detection config automatically downloads
+   and loads the model (e.g. `ecgan-detect configs/anomaly_detection/mitbih/vaegan_plus/vaegan_fold_1_onlyrec.yml`).
+   Note: Tracking was performed using weights and biases. If you want to execute the anomaly detection results,
    `TRACKER_NAME` needs to be changed to `local` for local experiments!
-   The trained models are stored at Weights and Biases. starting an anomaly detection config automatically downloads
-   and loads the model (e.g. `ecgan-detect configs/anomaly_detection/mitbih/vaegan_plus/vaegan_fold_1_onlyrec.yml`, again:
-   make sure to change the tracker). Detection as well as training required running the preprocessing for each dataset
-   once before starting it.
+   Detection as well as training required running the preprocessing for each dataset once before starting it.
+   It is only required once since all runs of the respective dataset use the same preprocessing.
 
-2. Figures and required data can be found in the KDD directory. Figure 2 was created using draw.io and not automatically,
-Figures 10 and 12 where directly taken from the Weights and Biases runs.
+3. Figures and required data can be found in the KDD directory. Figure 2 was created using draw.io and not automatically,
+Figures 10 and 12 where directly taken from the Weights and Biases runs. The KDD directory also contains wandb reports
+   and code used for a comparison using an OCSVM is in the `comparisons/` directory (requires preprocessing the data as
+   described above first).
 
-3. Additional notes: The original BeatGAN paper utilizes a sequence length of 320 (we use 160) and a different preprocessing,
+4. Additional notes: The original BeatGAN paper utilizes a sequence length of 320 (we use 160) and a different preprocessing,
 including the removal of some classes. We use a more common and complete preprocessing in our experiments with a similar hidden
    "true" dimension (both datasets use single heartbeats, the centering and sampling differs). We have also performed
    experiments using the original beatgan dataset with the same results as reported in the paper. To utilize the beatgan dataset,
@@ -28,23 +37,6 @@ including the removal of some classes. We use a more common and complete preproc
    After preprocessing you can also simply use the configurations from the other training runs, only needing to change the
    dataset in the respective configuration file.
 
-
-# ECGAN
-
-ECGAN is a modular repository to train ML algorithms - and especially Generative Adversarial Networks (GANs) -
-on electrocardiographic data, even though the setup is generally suitable for arbitrary time series.
-While ECGAN also supports other tasks, such as classification using simple RNNs/CNNs, the focus lies on
-the generation of data using GANs.
-The GANs are trained on only the ''normal'' (for ECGs: healthy) class to learn the underlying representation of
-this class. The resulting GAN can be used to generate new healthy data or detect anomalies by comparing
-the synthetic data with the test data.
-ECGAN follows modular setup allows easy modifications to the different parts of this project, allowing researchers to
-simply  download and preprocess various ECG datasets, train a variety models to generate realistic time series and
-apply a variety of anomaly detection mechanisms. ECGAN is built to be reproducible and easily expandable to allow fast
-prototyping and foster comparability and open source implementations by reducing the time required to implement
-models or preprocessing scenarios.
-
-**Parts of the implementation are still in an experimental state.**
 
 ### Installation
 #### Unix
