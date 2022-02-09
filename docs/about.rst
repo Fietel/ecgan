@@ -1,11 +1,8 @@
 About
 =============
-The ECGAN framework was initially developed as part of a research project between
-`eMundo GmbH <https://www.e-mundo.de/en>`_ and the research group
-`Data Mining in Medicine <https://dmm.dbs.ifi.lmu.de/cms/>`_ of LMU Munich.
+The ECGAN framework was initially developed as part of a research project between REDACTED.
 
-ECGAN is generously supported and partially funded by the `Bavarian Research Foundation
-<https://forschungsstiftung.de/Welcome.html>`_.
+ECGAN is generously supported and partially funded by the REDACTED.
 The focus of the research project was to investigate and improve the state of the art
 generation of ECG data using Generative Adversarial Networks. However, the framework
 has since expanded and supports various additional tasks.

@@ -1,9 +1,7 @@
 """
 Module for a GAN sampling from a Variational Autoencoder (VAE).
 
-The VAE is inspired by the implementation of "Survival-oriented embeddings with application to CT scans of colorectal
-carcinoma patients with liver metastases" by Tobias Weber, 2021. The basic structure of the underlying AE-GAN
-architecture is inspired by :class:`ecgan.modules.generative.aegan.AEGAN`.
+The basic structure of the underlying AE-GAN architecture is inspired by :class:`ecgan.modules.generative.aegan.AEGAN`.
 """
 from logging import getLogger
 from typing import Dict, List, cast
@@ -29,7 +27,7 @@ class VAEGAN(AEGAN):
     """Variational Autoencoder for encoding data to latent space, reconstructing it and judging the quality."""
 
     def __init__(self, cfg: VAEGANConfig, seq_len: int, num_channels: int):
-        """Initialize the VAE GAN."""
+        """Initialize the VAEGAN."""
         self.cfg: VAEGANConfig = cfg
         ############################################################
         # SET PARAMETERS

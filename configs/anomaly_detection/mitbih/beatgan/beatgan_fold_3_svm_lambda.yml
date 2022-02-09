@@ -1,0 +1,36 @@
+################################################
+### AD_EXPERIMENT
+################################################
+ad_experiment:
+    FOLD: 3
+    RUN_URI: ecgan/evaluation-kdd/1ajtpgey
+    RUN_VERSION: v15
+    SAVE_DIR: results/
+    TRACKER:
+        ENTITY: ecgan
+        EXPERIMENT_NAME: beatgan-fold3-svm-lambda
+        LOCAL_SAVE: false
+        LOG_LEVEL: info
+        PROJECT: KDD-AnomalyDetection
+        S3_CHECKPOINT_UPLOAD: false
+        SAVE_PDF: false
+        TRACKER_NAME: wb
+
+################################################
+### DETECTION
+################################################
+detection:
+    AD_SCORE_STRATEGY: SVM_LAMBDA   # RECONSTRUCTION_ERROR GRID_SEARCH_LAMBDA SVM_LAMBDA SVM_LAMBDA_GAMMA
+    AMOUNT_OF_RUNS: 1
+    BATCH_SIZE: 256
+    DETECTOR: inverse_mapping
+    DISCRIMINATION_STRATEGY: feature_matching
+    EMBEDDING:
+        CREATE_UMAP: false
+        LOAD_PRETRAINED_UMAP: true
+    INVERSE_MAPPING_URI: null
+    NORMALIZE_ERROR: true
+    NUM_WORKERS: 11
+    RECONSTRUCTION:
+        STRATEGY: inverse_mapping
+    SAVE_DATA: false

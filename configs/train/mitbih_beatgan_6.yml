@@ -1,0 +1,133 @@
+experiment:
+    DATASET: mitbih_beats
+    LOADING_DIR: data
+    MODULE: aegan
+    TRACKER:
+      ENTITY: ecgan
+      EXPERIMENT_NAME: beatgan-6ls
+      LOCAL_SAVE: false
+      LOG_LEVEL: info
+      PROJECT: evaluation-kdd
+      S3_CHECKPOINT_UPLOAD: false
+      SAVE_PDF: false
+      TRACKER_NAME: local
+    TRAIN_ON_GPU: true
+module:
+    DISCRIMINATOR:
+      INPUT_NORMALIZATION: batch
+      LAYER_SPECIFICATION:
+        HIDDEN_CHANNELS:
+        - 32
+        - 64
+        - 128
+        - 256
+        - 512
+      LOSS:
+        CLIPPING_BOUND: null
+        GRADIENT_PENALTY_WEIGHT: null
+        NAME: aegan_discriminator
+        REDUCTION: null
+      OPTIMIZER:
+        ALPHA: null
+        BETAS:
+        - 0.5
+        - 0.999
+        CENTERED: null
+        DAMPENING: null
+        EPS: null
+        LR: 0.0001
+        MOMENTUM: null
+        NAME: adam
+        WEIGHT_DECAY: 0.0
+      SPECTRAL_NORM: false
+      WEIGHT_INIT:
+        NAME: glorot_normal
+    DISCRIMINATOR_ROUNDS: 1
+    ENCODER:
+      INPUT_NORMALIZATION: batch
+      LAYER_SPECIFICATION:
+        HIDDEN_CHANNELS:
+        - 32
+        - 64
+        - 128
+        - 256
+        - 512
+      LOSS:
+        CLIPPING_BOUND: null
+        GRADIENT_PENALTY_WEIGHT: null
+        NAME: l2
+        REDUCTION: mean
+      OPTIMIZER:
+        ALPHA: null
+        BETAS:
+        - 0.5
+        - 0.999
+        CENTERED: null
+        DAMPENING: null
+        EPS: null
+        LR: 0.0001
+        MOMENTUM: null
+        NAME: adam
+        WEIGHT_DECAY: 0.0
+      SPECTRAL_NORM: false
+      WEIGHT_INIT:
+        NAME: glorot_normal
+    GENERATOR:
+      INPUT_NORMALIZATION: batch
+      LAYER_SPECIFICATION:
+        HIDDEN_CHANNELS:
+        - 512
+        - 256
+        - 128
+        - 64
+        - 32
+      LOSS:
+        CLIPPING_BOUND: null
+        GRADIENT_PENALTY_WEIGHT: null
+        NAME: bce_generator_loss
+        REDUCTION: mean
+      OPTIMIZER:
+        ALPHA: null
+        BETAS:
+        - 0.5
+        - 0.999
+        CENTERED: null
+        DAMPENING: null
+        EPS: null
+        LR: 0.0001
+        MOMENTUM: null
+        NAME: adam
+        WEIGHT_DECAY: 0.0
+      SPECTRAL_NORM: false
+      TANH_OUT: true
+      WEIGHT_INIT:
+        NAME: glorot_normal
+    GENERATOR_ROUNDS: 1
+    LATENT_SIZE: 6
+    LATENT_SPACE: encoder
+preprocessing:
+    LOADING_DIR: data
+    LOADING_SRC: shayanfazeli/heartbeat
+    NUM_SAMPLES: 0
+    NUM_WORKERS: 16
+    RESAMPLING_ALGORITHM: lttb
+    TARGET_SEQUENCE_LENGTH: 160
+    WINDOW_LENGTH: 0
+    WINDOW_STEP_SIZE: 0
+trainer:
+    BATCH_SIZE: 64
+    BINARY_LABELS: true
+    CHANNELS: 1
+    CHECKPOINT_INTERVAL: 50
+    CROSS_VAL_FOLDS: 5
+    EPOCHS: 500
+    MANUAL_SEED: 43324
+    NUM_WORKERS: 16
+    SAMPLE_INTERVAL: 20
+    SPLIT:
+    - 0.85
+    - 0.15
+    SPLIT_METHOD: random
+    SPLIT_PATH: split.pkl
+    TRAIN_ONLY_NORMAL: true
+    TRANSFORMATION: none

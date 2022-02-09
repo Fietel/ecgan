@@ -41,7 +41,6 @@ axes[0][0].set_xlabel("Normal Class")
 axes[0][1].set_xlabel("Abnormal Class")
 plt.tight_layout()
 fig.colorbar(heatmap, ax=axes.ravel().tolist(), label='Absolute Error')
-
 plt.gcf().set_size_inches(3.5, 2)
 # plt.show()
 

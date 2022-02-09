@@ -35,8 +35,6 @@ Related Modules
 
     #. BeatGAN: Paper: `BeatGAN: Anomalous Rhythm Detection using Adversarially Generated Time Series, Zhou et al. 2019 <https://www.ijcai.org/proceedings/2019/0616.pdf>`_, Repository: `BeatGAN Github <https://github.com/Vniex/BeatGAN>`_
 
-    #. VaeGAN: BeatGAN as well as "Survival-oriented embeddings with application to CT scans of colorectal carcinoma patients with liver metastases" by Tobias Weber, 2021.
-
 The modules have received significant improvements, often inspired by more recent developments. This
 especially includes:
 

@@ -8,7 +8,7 @@ To get started with the ECGAN framework, make sure to have `Python 3.8
 It is recommended to activate a virtual environment before installing the dependencies.
 If you are on Unix (slight differences for Windows):
 
-1. Clone the repository (e.g. :code:`git clone https://github.com/emundo/ecgan`) and go into the repository (:code:`cd ecgan`).
+1. Switch into the repository (:code:`cd ecgan`).
 2. Install the dependencies (:code:`pip install -r requirements.txt`)
 3. Generate a config file for preprocessing and training. Change the configuration file if desired.
    Example: :code:`ecgan-init -m cnn entity_name project_name run_name` (more information: :ref:`Config`) to generate a

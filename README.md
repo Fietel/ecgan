@@ -1,3 +1,34 @@
+# Notes for KDD review
+This work was part of a larger framework for open source arrhythmia detection, information which may allow
+identification is marked as REDACTED.
+After installation (see sections below):
+
+1. Reproduction of the experiments: the configuration files are in the configs/ folder. Make sure that you are inside
+the virtual environment. First: preprocess the data using a training config from either the MITBIH or Wafer dataset to
+   download and preprocess the data (e.g. `ecgan-preprocess configs/train/mitbih_beatgan.yml`).
+   Afterwards you can start training (e.g. `ecgan-train configs/train/mitbih_beatgan.yml`) or anomaly detection.
+   Note: All tracking was performed using weights and biases. Since we offer the original configuration files here, the
+   `TRACKER_NAME` needs to be changed to `local` for local experiments!
+   The trained models are stored at Weights and Biases. starting an anomaly detection config automatically downloads
+   and loads the model (e.g. `ecgan-detect configs/anomaly_detection/mitbih/vaegan_plus/vaegan_fold_1_onlyrec.yml`, again:
+   make sure to change the tracker). Detection as well as training required running the preprocessing for each dataset
+   once before starting it.
+
+2. Figures and required data can be found in the KDD directory. Figure 2 was created using draw.io and not automatically,
+Figures 10 and 12 where directly taken from the Weights and Biases runs.
+
+3. Additional notes: The original BeatGAN paper utilizes a sequence length of 320 (we use 160) and a different preprocessing,
+including the removal of some classes. We use a more common and complete preprocessing in our experiments with a similar hidden
+   "true" dimension (both datasets use single heartbeats, the centering and sampling differs). We have also performed
+   experiments using the original beatgan dataset with the same results as reported in the paper. To utilize the beatgan dataset,
+   please initialize a configuration file specifying the dataset
+   (e.g. `ecgan-init ENTITY PROJECT EXPERIMENT_NAME -d mitbih_beatgan -o beatgan_config.yml`), preprocess the data
+   (`ecgan-preprocess beatgan_config.yml`) and start training  (`ecgan-train beatgan_config.yml`). Training is mainly
+   feasible on GPU for this model, even though CPU training is possible in this framework without any additional configurations.
+   After preprocessing you can also simply use the configurations from the other training runs, only needing to change the
+   dataset in the respective configuration file.
+
+
 # ECGAN
 
 ECGAN is a modular repository to train ML algorithms - and especially Generative Adversarial Networks (GANs) -
@@ -39,20 +70,17 @@ By calling `ecgan-init -d DATASET -m MODULE -o FILE_NAME PROJECT NAME` a configu
 is generated. This can be manually updated and contains most relevant hyperparameters.
 After applying changes to the config file if desired you can start the preprocessing of
 the chosen DATASET using `ecgan-preprocess` before training the model by invoking `ecgan-train`.
-To perform anomaly detection, the `-a model_reference` flag is used (see [docs](https://emundo.github.io/ecgan-docs) for more
+To perform anomaly detection, the `-a model_reference` flag is used (see [docs](REDACTED) for more
 information).
 
 ### Data
 We support several datasets will be used for evaluation: MIT-BIH (small amount of patients, long recordings, often
 used), the PTB ECG dataset as well as the Shaoxing dataset (many patients, smaller recordings, published recently).
 
-Some of the datasets require setting up kaggle credentials or downloading it manually (see [docs](https://emundo.github.io/ecgan-docs))
+Some of the datasets require setting up kaggle credentials or downloading it manually (see [docs](REDACTED))
 
 ## About
 
 ### Project
 
-ECGAN is an initiative of eMundo GmbH and the LMU Munich research group data mining in medicine supported by the
-[Bavarian Research Foundation](https://forschungsstiftung.de/Welcome.html). The purpose of this initiative is to
-investigate anomaly detection in time series data, focusing on electrocardiogram data. Do not hesitate to reach out if
-you have any questions.
+REDACTED

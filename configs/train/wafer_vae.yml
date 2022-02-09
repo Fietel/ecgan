@@ -1,0 +1,103 @@
+experiment:
+    DATASET: wafer
+    LOADING_DIR: data
+    MODULE: variational_autoencoder
+    TRACKER:
+      ENTITY: ecgan
+      EXPERIMENT_NAME: wafer-vae-
+      LOCAL_SAVE: false
+      LOG_LEVEL: info
+      PROJECT: evaluation-kdd
+      S3_CHECKPOINT_UPLOAD: false
+      SAVE_PDF: false
+      TRACKER_NAME: local
+    TRAIN_ON_GPU: true
+module:
+    DECODER:
+      INPUT_NORMALIZATION: batch
+      LAYER_SPECIFICATION:
+        HIDDEN_CHANNELS:
+        - 512
+        - 256
+        - 128
+        - 64
+        - 32
+      LOSS:
+        CLIPPING_BOUND: null
+        GRADIENT_PENALTY_WEIGHT: null
+        NAME: bce_generator_loss
+        REDUCTION: mean
+      OPTIMIZER:
+        ALPHA: null
+        BETAS:
+        - 0.5
+        - 0.99
+        CENTERED: null
+        DAMPENING: null
+        EPS: 1.0e-16
+        LR: 0.0002
+        MOMENTUM: null
+        NAME: ada_belief
+        WEIGHT_DECAY: 0
+      SPECTRAL_NORM: false
+      WEIGHT_INIT:
+        NAME: glorot_normal
+    ENCODER:
+      INPUT_NORMALIZATION: batch
+      LAYER_SPECIFICATION:
+        HIDDEN_CHANNELS:
+        - 32
+        - 64
+        - 128
+        - 256
+        - 512
+      LOSS:
+        CLIPPING_BOUND: null
+        GRADIENT_PENALTY_WEIGHT: null
+        NAME: l2
+        REDUCTION: mean
+      OPTIMIZER:
+        ALPHA: null
+        BETAS:
+        - 0.5
+        - 0.99
+        CENTERED: null
+        DAMPENING: null
+        EPS: 1.0e-16
+        LR: 0.0002
+        MOMENTUM: null
+        NAME: ada_belief
+        WEIGHT_DECAY: 0
+      SPECTRAL_NORM: false
+      WEIGHT_INIT:
+        NAME: glorot_normal
+    KL_BETA: 0.0
+    LATENT_SIZE: 4
+    LATENT_SPACE: encoder
+    TANH_OUT: false
+preprocessing:
+    LOADING_DIR: data
+    LOADING_SRC: http://www.timeseriesclassification.com/Downloads/Wafer.zip
+    NUM_SAMPLES: 0
+    NUM_WORKERS: 16
+    RESAMPLING_ALGORITHM: interpolate
+    TARGET_SEQUENCE_LENGTH: 160
+    WINDOW_LENGTH: 0
+    WINDOW_STEP_SIZE: 0
+trainer:
+    BATCH_SIZE: 64
+    BINARY_LABELS: true
+    CHANNELS: 1
+    CHECKPOINT_INTERVAL: 50
+    CROSS_VAL_FOLDS: 5
+    EPOCHS: 500
+    MANUAL_SEED: 77591
+    NUM_WORKERS: 16
+    SAMPLE_INTERVAL: 20
+    SPLIT:
+    - 0.85
+    - 0.15
+    SPLIT_METHOD: random
+    SPLIT_PATH: split.pkl
+    TRAIN_ONLY_NORMAL: true
+    TRANSFORMATION: minmax
