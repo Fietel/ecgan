@@ -1,16 +1,16 @@
 # Notes for KDD review
 This work was part of a larger framework for open source arrhythmia detection, information which may allow
 identification is marked as REDACTED.
-After installation (see sections below):
 
 1. Installation:
-   1. Create a virtualenv (e.g. `virtualenv --python=/usr/bin/python3.8 .venv`) and activate it (e.g. `source .venv/bin/activate`)
+   1. Install python and create a virtualenv (e.g. `virtualenv --python=/usr/bin/python3.8 .venv`, possibly change the
+      location of your python installation. Make sure to use Python3.8) and activate it (e.g. `source .venv/bin/activate`)
    2. Install dependencies (`make setup`).
 
 2. Reproduction of the experiments: the configuration files are in the configs/ folder. Make sure that you are inside
 the virtual environment. First: preprocess the data using a training config from either the MITBIH or Wafer dataset to
    download and preprocess the data (e.g. `ecgan-preprocess configs/train/mitbih_beatgan.yml`).
-   Note: you need to setup the Kaggle CLI for automatic download of the MITBIH dataset. If you do not have
+   Note: you need to setup the Kaggle API (see https://github.com/Kaggle/kaggle-api -> API credentials) for automatic download of the MITBIH dataset. If you do not have
    access to this, download the data from https://www.kaggle.com/shayanfazeli/heartbeat. The downloaded data needs to
    be extracted into `data/mitbih_beats/raw` which should encompass four files after extraction.
    Afterwards you can start training (e.g. `ecgan-train configs/train/mitbih_beatgan.yml`) or anomaly detection.

@@ -52,7 +52,7 @@ print(
 # test_x=assert_and_reshape_dim(to_numpy(test_x))
 # TEST
 
-# Take first 50 PCA dims as in BeatGAN
+# Take first 50 PCA dims as in BeatGAN, neither combined nor separate PCAs yield a good result
 train_x, _ = calculate_pca(to_numpy(train_x), 50)
 test_x, _ = calculate_pca(to_numpy(test_x), 50)
 print(train_x.shape)
