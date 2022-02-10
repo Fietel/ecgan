@@ -21,10 +21,11 @@ the virtual environment. First: preprocess the data using a training config from
    Detection as well as training required running the preprocessing for each dataset once before starting it.
    It is only required once since all runs of the respective dataset use the same preprocessing.
 
-3. Figures and required data can be found in the KDD directory. Figure 2 was created using draw.io and not automatically,
-Figures 10 and 12 where directly taken from the Weights and Biases runs. The KDD directory also contains wandb reports
-   and code used for a comparison using an OCSVM is in the `comparisons/` directory (requires preprocessing the data as
-   described above first).
+3. Figures and required data can be found in the `KDD` directory. Figure 2 was created using draw.io,
+Figures 10 and 12 where directly taken from the Weights and Biases runs. The `KDD` directory also contains wandb reports
+   from the five training folds for each model.
+   Code used for a comparison using an OCSVM is in the `comparisons/` directory (requires preprocessing the data as
+   described above first). The `configs` directory contains all configuration files.
 
 4. Additional notes: The original BeatGAN paper utilizes a sequence length of 320 (we use 160) and a different preprocessing,
 including the removal of some classes. We use a more common and complete preprocessing in our experiments with a similar hidden
